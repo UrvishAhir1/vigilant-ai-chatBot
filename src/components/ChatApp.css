@@ -1,0 +1,218 @@
+:root {
+  --bg-color: #0d0d0d;
+  --card-color: rgba(20, 20, 20, 0.6);
+  --user-msg: rgba(255, 204, 0, 0.1);
+  --bot-msg: rgba(255, 255, 255, 0.05);
+  --accent: #ffcc00;
+  --text: #f5f5f5;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  /* background: linear-gradient(120deg, rgb(0, 0, 0), rgb(255, 204, 0, 0.05)); */
+  background: var(--bg-color);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: url('/batman-logo.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.2;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: drop-shadow(0 0 10px rgba(255, 204, 0, 1));
+  pointer-events: none;
+}
+
+.chat-container {
+  width: 700px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-color);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+}
+
+header {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 30px rgb(0, 0, 0);
+  animation: glowFade 2s infinite alternate;
+}
+
+#chatbox {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: transparent;
+}
+
+.message {
+  max-width: 75%;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  animation: fadeIn 0.3s ease forwards;
+  word-wrap: break-word;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 6px rgba(255, 255, 255, 0.03);
+}
+
+.user {
+  background-color: var(--user-msg);
+  align-self: flex-end;
+  color: var(--accent);
+  border-top-right-radius: 0;
+  border: 1px solid var(--accent);
+}
+
+.bot {
+  background-color: var(--bot-msg);
+  align-self: flex-start;
+  color: var(--text);
+  border-top-left-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+form {
+  display: flex;
+  padding: 1rem;
+  background-color: transparent;
+  box-shadow: 0 0 30px rgb(0, 0, 0);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(48, 48, 48, 0.2);
+  color: var(--white);
+  outline: none;
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+
+input[type='text']:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.3);
+}
+
+button {
+  padding: 0.9rem 1.5rem;
+  margin-left: 0.5rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 12px;
+  color: var(--bg-color);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #ffe066;
+  transform: scale(1.03);
+}
+
+/* Bat-shaped button override */
+button {
+  border: none;
+  position: relative;
+  width: 200px;
+  height: 73px;
+  padding: 0;
+  z-index: 2;
+  background-color: transparent;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  -webkit-mask-size: 100%;
+  cursor: pointer;
+  transform: translateY(8px);
+  transition: transform 0.3s ease-in-out;
+  background-color: var(--accent);
+}
+
+button:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0px 0 0 0 white;
+  transition: all 0.5s ease;
+}
+
+button:hover:after {
+  box-shadow: 0px -13px 56px 12px rgba(255, 255, 255, 0.6);
+}
+
+button span {
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 100;
+  left: 50%;
+  top: 39%;
+  letter-spacing: 3px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: black;
+  transition: all 0.5s ease;
+}
+
+button:hover span {
+  color: white;
+}
+
+button:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background-color: black;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+}
+
+button:hover:before {
+  width: 100%;
+}
+
+/* Animations */
+
+@keyframes glowFade {
+  0% {
+    text-shadow: 0 0 8px var(--accent);
+  }
+  100% {
+    text-shadow: 0 0 16px var(--accent), 0 0 24px var(--accent);
+  }
+}
