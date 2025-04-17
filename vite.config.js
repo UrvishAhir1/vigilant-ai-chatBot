@@ -19,5 +19,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    // ✅ Add this block to fix the Azure error
+    server: {
+      allowedHosts: ['vigilant-ai-chatbot.azurewebsites.net']
+      // or use allowedHosts: 'all' for quick testing
+    },
   }
 })
